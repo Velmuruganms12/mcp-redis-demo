@@ -22,16 +22,41 @@ Enterprise support ticket system using FastMCP server with **Redis** for persist
                          └──────────────────────┘
 ```
 
-- **Server**: FastMCP running in Docker, streamable-http transport
-- **Redis**: Stores all ticket data as JSON, survives server restarts
-- **Streamlit App**: Web UI for testing ticket operations
-- **LangChain Agent**: AI agent using Groq LLM for natural language ticket management
+## Project Structure
+
+```
+├── server/                 # MCP Server
+│   ├── server.py          # FastMCP server with Redis
+│   ├── Dockerfile         # Docker image
+│   ├── docker-compose.yml # Runs server + Redis
+│   └── server-requirements.txt
+├── app.py                  # Streamlit web UI
+├── client.py              # LangChain agent client
+├── requirements.txt       # Client dependencies
+└── README.md
+```
 
 ## Quick Start
 
+### Start Server
+
 ```bash
+cd server
 docker compose up -d --build
+cd ..
+```
+
+### Setup Client
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
+```
+
+### Run Streamlit App
+
+```bash
 streamlit run app.py
 ```
 
